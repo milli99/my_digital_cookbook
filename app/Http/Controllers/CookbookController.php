@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Recipe;
 
 class CookbookController extends Controller
 {
@@ -13,7 +14,8 @@ class CookbookController extends Controller
      */
     public function index()
     {
-        //
+       $recipes = Recipe::orderBy('name', 'desc')->paginate(10);
+        return view('recipes.index')->with('recipes', $recipes);
     }
 
     /**
@@ -23,7 +25,9 @@ class CookbookController extends Controller
      */
     public function create()
     {
-        //
+        return view('recipes.create');
+       // return redirect()->route('recipes.index')
+           // ->with('success','Product created successfully.');
     }
 
     /**
@@ -45,7 +49,8 @@ class CookbookController extends Controller
      */
     public function show($id)
     {
-        //
+        $recipe = Recipe::find($id);
+        return view('recipes.show')->with('recipe', $recipe);
     }
 
     /**
