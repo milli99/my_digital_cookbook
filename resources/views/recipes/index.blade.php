@@ -17,7 +17,8 @@
                             <h5 class="card-title"><a href="/cookbook/{{$recipe->id}}">{{$recipe->name}}</a></h5>
                             <p class="card-text">{{$recipe->description}}</p>
                             <p class="card-text"><small class="text-muted">{{$recipe->created_at}}</small></p>
-
+                            @if(!Auth::guest())
+                                @if(Auth::user()->id == $recipe->user_id)
                             <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-primary">Edit</a>
 
                             <form action="{{route('cookbook.destroy', $recipe->id)}}" method="POST">
@@ -25,6 +26,8 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
+                                @endif
+                            @endif
                         </div>
                     </div>
                 </div>

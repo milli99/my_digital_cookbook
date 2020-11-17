@@ -12,6 +12,7 @@
         </div>
     </div>
 
+
     <form action="{{route('cookbook.update', $recipe->id)}}" method="POST">
         @csrf
         @method('PUT')
@@ -32,13 +33,13 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Ingredients</strong>
-                    <textarea class="form-control" style="height:150px" name="hallo" value="{{$recipe->ingredients}}" placeholder="Ingredients"></textarea>
+                    <input type="text" name="ingredients" value="{{$recipe->ingredients}}" class="form-control" style="height:150px"  placeholder="Ingredients">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Preparation</strong>
-                    <textarea class="form-control" style="height:150px" name="preparation" value="{{$recipe->preparation}}" placeholder="Preparation"></textarea>
+                    <input class="form-control" style="height:150px" name="preparation" value="{{$recipe->preparation}}" placeholder="Preparation">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

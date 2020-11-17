@@ -11,6 +11,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function cookbook(){
+        return $this->hasMany('App\Models\Recipe');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

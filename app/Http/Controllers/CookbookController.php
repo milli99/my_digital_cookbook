@@ -8,6 +8,15 @@ use App\Models\Recipe;
 class CookbookController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -51,6 +60,7 @@ class CookbookController extends Controller
         $recipe->description = $request->input('description');
         $recipe->ingredients = $request->input('ingredients');
         $recipe->preparation = $request->input('preparation');
+        $recipe->user_id = auth()->user()->id;
         $recipe->save();
 
         return redirect()->route('cookbook.index')
@@ -100,7 +110,7 @@ class CookbookController extends Controller
         //update Recipe
         $recipe = Recipe::find($id);
         $recipe->name = $request->input('name');
-        $recipe->hallo = $request->input('description');
+        $recipe->description = $request->input('description');
         $recipe->ingredients = $request->input('ingredients');
         $recipe->preparation = $request->input('preparation');
         $recipe->save();

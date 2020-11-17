@@ -14,6 +14,7 @@
     <hr>
     <small>Written at {{$recipe->created_at}}</small>
     <hr>
-    <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-outline-primary">Edit</a>
-
+    @if(!Auth::guest())
+        <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-outline-primary">Edit</a>
+    @endif
 @endsection
