@@ -14,7 +14,7 @@ class CookbookController extends Controller
      */
     public function index()
     {
-       $recipes = Recipe::orderBy('name', 'desc')->paginate(10);
+       $recipes = Recipe::orderBy('created_at', 'desc')->paginate(10);
         return view('recipes.index')->with('recipes', $recipes);
     }
 
@@ -44,7 +44,17 @@ class CookbookController extends Controller
             'ingredients' => 'required',
             'preparation' => 'required'
         ]);
-        return 123;
+
+        //create Recipe
+        $recipe = new Recipe;
+        $recipe->name = $request->input('name');
+        $recipe->description = $request->input('description');
+        $recipe->ingredients = $request->input('ingredients');
+        $recipe->preparation = $request->input('preparation');
+        $recipe->save();
+
+        return redirect()->route('cookbook.index')
+            ->with('success','Recipe created successfully.');
     }
 
     /**
@@ -67,7 +77,8 @@ class CookbookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $recipe = Recipe::find($id);
+        return view('recipes.edit')->with('recipe', $recipe);
     }
 
     /**
@@ -79,7 +90,23 @@ class CookbookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'ingredients' => 'required',
+            'preparation' => 'required'
+        ]);
+
+        //update Recipe
+        $recipe = Recipe::find($id);
+        $recipe->name = $request->input('name');
+        $recipe->hallo = $request->input('description');
+        $recipe->ingredients = $request->input('ingredients');
+        $recipe->preparation = $request->input('preparation');
+        $recipe->save();
+
+        return redirect()->route('cookbook.index')
+            ->with('success','Recipe Updated successfully.');
     }
 
     /**
@@ -87,9 +114,15 @@ class CookbookController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
      */
     public function destroy($id)
     {
-        //
+        $recipe = Recipe::find($id);
+        $recipe->delete();
+
+
+        return redirect()->route('cookbook.index')
+            ->with('success','Recipe deleted successfully');
     }
 }

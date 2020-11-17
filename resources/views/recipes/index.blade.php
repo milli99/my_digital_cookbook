@@ -2,6 +2,9 @@
 
 @section('content')
     <h1>Recipes</h1>
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ route('cookbook.create') }}"> Create New Recipe</a>
+            </div>
     @if(count($recipes) > 0)
         @foreach($recipes as $recipe)
             <div class="card mb-3">
@@ -14,6 +17,14 @@
                             <h5 class="card-title"><a href="/cookbook/{{$recipe->id}}">{{$recipe->name}}</a></h5>
                             <p class="card-text">{{$recipe->description}}</p>
                             <p class="card-text"><small class="text-muted">{{$recipe->created_at}}</small></p>
+
+                            <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-primary">Edit</a>
+
+                            <form action="{{route('cookbook.destroy', $recipe->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </div>
                     </div>
                 </div>
