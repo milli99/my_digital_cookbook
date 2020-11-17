@@ -26,8 +26,8 @@ class CookbookController extends Controller
     public function create()
     {
         return view('recipes.create');
-       // return redirect()->route('recipes.index')
-           // ->with('success','Product created successfully.');
+       //return redirect()->route('recipes.index')
+            //->with('success','Product created successfully.');
     }
 
     /**
@@ -38,7 +38,13 @@ class CookbookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'ingredients' => 'required',
+            'preparation' => 'required'
+        ]);
+        return 123;
     }
 
     /**
