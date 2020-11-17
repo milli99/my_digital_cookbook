@@ -23,3 +23,7 @@ Route::get('/about', function () {
 Route::resource('cookbook', 'App\Http\Controllers\CookbookController');
 //Route::resource('cookbook', 'CookbookController');
 //Route::resource('cookbook', CookbookController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
