@@ -51,8 +51,24 @@ class CookbookController extends Controller
             'name' => 'required',
             'description' => 'required',
             'ingredients' => 'required',
-            'preparation' => 'required'
+            'preparation' => 'required',
+            'recipe_image' => 'image|nullable|max:1999'
         ]);
+        //File Upload
+        if ($request->hasFile('recipe_image')){
+            //Get filenname with the extension
+            $filenameWithExt= $request->file('recipe_image')->getClientOriginalName();
+            //Get just filename
+            $filename =pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //Get just ext
+            $extension= $request->file('recipe_image')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore= $filename. '_'.time().'.'.$extension;
+            //Upload Image
+            $path = $request->file('recipe_image')->storeAs('public/recipe_images', $fileNameToStore);
+        }else{
+            $fileNameToStore='noimage.jpg';
+        }
 
         //create Recipe
         $recipe = new Recipe;
@@ -61,6 +77,7 @@ class CookbookController extends Controller
         $recipe->ingredients = $request->input('ingredients');
         $recipe->preparation = $request->input('preparation');
         $recipe->user_id = auth()->user()->id;
+        $recipe->recipe_image = $fileNameToStore;
         $recipe->save();
 
         return redirect()->route('cookbook.index')
