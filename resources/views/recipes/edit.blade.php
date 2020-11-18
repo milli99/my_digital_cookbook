@@ -13,7 +13,7 @@
     </div>
 
 
-    <form action="{{route('cookbook.update', $recipe->id)}}" method="POST">
+    <form action="{{route('cookbook.update', $recipe->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -29,6 +29,10 @@
                     <strong>Description</strong>
                     <input type="text" name="description" value="{{$recipe->description}}" class="form-control" placeholder="Description">
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Example file input</label>
+                <input type="file" name="recipe_image" class="form-control-file" id="exampleFormControlFile1">
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

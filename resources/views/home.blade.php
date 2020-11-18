@@ -21,16 +21,18 @@
                         </div>
                     @endif
 
-                    <h3>Deine Rezepte</h3>
+                    <h3>Meine Rezepte</h3>
                         @if(count($cookbook)>0)
                     <table class="table table-striped">
                         <tr>
+                            <th>Bild</th>
                             <th>Name</th>
                             <th></th>
                             <th></th>
                         </tr>
                         @foreach($cookbook as $recipe)
                             <tr>
+                                <td><img height="100px" src="/storage/recipe_images/{{$recipe->recipe_image}}" alt="Bild"></td>
                                 <td>{{$recipe->name}}</td>
                                 <td>
                                     <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-primary">Edit</a>

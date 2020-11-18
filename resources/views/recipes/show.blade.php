@@ -9,12 +9,11 @@
         </div>
     </div>
     <h1>{{$recipe->name}}</h1>
-    <img style="width: 100%" src="public/storage/recipe_images/{{$recipe->recipe_image}}">
-    <br>
-    <br>
-
     <div>
         <p>{{$recipe->description}}</p>
+        <img src="/storage/recipe_images/{{$recipe->recipe_image}}" class="card-img" alt="...">
+        <br>
+        <br>
         <p>{{$recipe->ingredients}}</p>
         <p>{{$recipe->preparation}}</p>
     </div>
@@ -22,6 +21,11 @@
     <small>Written at {{$recipe->created_at}}</small>
     <hr>
     @if(!Auth::guest())
-        <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-outline-primary">Edit</a>
+        <form action="{{route('cookbook.destroy', $recipe->id)}}" method="POST">
+            <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-primary">Edit</a>
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
     @endif
 @endsection
