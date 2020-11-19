@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recipe;
+use Illuminate\Support\Facades\Storage;
 
 class CookbookController extends Controller
 {
@@ -124,13 +125,28 @@ class CookbookController extends Controller
             'preparation' => 'required'
         ]);
 
+        //File Upload
+        if ($request->hasFile('recipe_image')){
+            $filenameWithExt= $request->file('recipe_image')->getClientOriginalName();
+            $filename =pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension= $request->file('recipe_image')->getClientOriginalExtension();
+            $fileNameToStore= $filename. '_'.time().'.'.$extension;
+            //Upload Image
+            $path = $request->file('recipe_image')->storeAs('public/recipe_images', $fileNameToStore);
+        }
+
         //update Recipe
         $recipe = Recipe::find($id);
         $recipe->name = $request->input('name');
         $recipe->description = $request->input('description');
         $recipe->ingredients = $request->input('ingredients');
         $recipe->preparation = $request->input('preparation');
+        if ($request->hasFile('recipe_image')){
+            $recipe->recipe_image = $fileNameToStore;
+        }
         $recipe->save();
+
+
 
         return redirect()->route('cookbook.index')
             ->with('success','Recipe Updated successfully.');
@@ -148,6 +164,10 @@ class CookbookController extends Controller
         $recipe = Recipe::find($id);
         $recipe->delete();
 
+        if ($recipe->recipe_image != 'noimage.jpg'){
+            //delete images
+            Storage::delete('public/recipe_images/'.$recipe->recipe_image);
+        }
 
         return redirect()->route('cookbook.index')
             ->with('success','Recipe deleted successfully');
