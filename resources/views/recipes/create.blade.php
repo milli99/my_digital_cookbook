@@ -21,34 +21,34 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong>Name:</strong>
+                    <strong>Name</strong>
                     <input type="text" name="name" class="form-control" placeholder="Name">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong>Description</strong>
-                    <input type="text" name="description" class="form-control" placeholder="Description">
+                    <strong>Beschreibung</strong>
+                    <input type="text" name="description" class="form-control" placeholder="Beschreibung">
                 </div>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlFile1">Example file input</label>
+                <label for="exampleFormControlFile1"></label>
                 <input type="file" name="recipe_image" class="form-control-file" id="exampleFormControlFile1">
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Ingredients</strong>
-                    <textarea class="form-control" style="height:150px" name="ingredients" placeholder="Ingredients"></textarea>
+                    <strong>Zutaten</strong>
+                    <textarea class="form-control" style="height:150px" name="ingredients" placeholder="Zutaten"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Preparation</strong>
-                    <textarea class="form-control" style="height:150px" name="preparation" placeholder="Preparation"></textarea>
+                    <strong>Zubereitung</strong>
+                    <textarea class="form-control" style="height:150px" name="preparation" placeholder="Zubereitung"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Rezept erstellen</button>
             </div>
         </div>
 

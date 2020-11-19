@@ -33,22 +33,22 @@
                         @foreach($cookbook as $recipe)
                             <tr>
                                 <td><img height="100px" src="/storage/recipe_images/{{$recipe->recipe_image}}" alt="Bild"></td>
-                                <td>{{$recipe->name}}</td>
+                                <td><a href="/cookbook/{{$recipe->id}}">{{$recipe->name}}</a></td>
                                 <td>
-                                    <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-primary">Edit</a>
+                                    <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-primary">Bearbeiten</a>
                                 </td>
                                 <td>
                                     <form action="{{route('cookbook.destroy', $recipe->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">Löschen</button>
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
                         @else
-                    <p>You have no Recipes</p>
+                    <p>Du besitzt keine Rezepte</p>
                         @endif
                 </div>
             </div>

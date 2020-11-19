@@ -9,13 +9,13 @@
         </div>
     </div>
 
+
     @if(count($recipes) > 0)
         @foreach($recipes as $recipe)
             <div class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <img src="/storage/recipe_images/{{$recipe->recipe_image}}" class="card-img" alt="...">
-
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
@@ -27,10 +27,10 @@
                                 @if(Auth::user()->id == $recipe->user_id)
 
                             <form action="{{route('cookbook.destroy', $recipe->id)}}" method="POST">
-                                <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-primary">Edit</a>
+                                <a href="/cookbook/{{$recipe->id}}/edit" class="btn btn-primary">Bearbeiten</a>
                             @csrf
                             @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">Löschen</button>
                              </form>
                              @endif
 

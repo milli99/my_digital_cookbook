@@ -13,16 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', 'PagesController@index');
+
 Route::get('/', 'App\Http\Controllers\PagesController@index');
 
-Route::get('/about', function () {
-    return view('pages.about');
-});
-
 Route::resource('cookbook', 'App\Http\Controllers\CookbookController');
-//Route::resource('cookbook', 'CookbookController');
-//Route::resource('cookbook', CookbookController::class);
 
 Auth::routes();
 

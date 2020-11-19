@@ -1,16 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Edit Recipe</h2>
+
+            <div class="mb-4" >
+                <a class="btn btn-primary" href="/cookbook">Zurück</a>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="/cookbook"> Back</a>
-            </div>
-        </div>
-    </div>
 
 
     <form action="{{route('cookbook.update', $recipe->id)}}" method="POST" enctype="multipart/form-data">
@@ -20,34 +14,34 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong>Name:</strong>
+                    <strong>Name</strong>
                     <input type="text" name="name" value="{{$recipe->name}}" class="form-control" placeholder="Name">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong>Description</strong>
-                    <input type="text" name="description" value="{{$recipe->description}}" class="form-control" placeholder="Description">
+                    <strong>Beschreibung</strong>
+                    <input type="text" name="description" value="{{$recipe->description}}" class="form-control" placeholder="Beschreibung">
                 </div>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlFile1">Example file input</label>
+                <label for="exampleFormControlFile1"></label>
                 <input type="file" name="recipe_image" class="form-control-file" id="exampleFormControlFile1">
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Ingredients</strong>
-                    <input type="text" name="ingredients" value="{{$recipe->ingredients}}" class="form-control" style="height:150px"  placeholder="Ingredients">
+                    <strong>Zutaten</strong>
+                    <input type="text" name="ingredients" value="{{$recipe->ingredients}}" class="form-control" style="height:150px"  placeholder="Zutaten">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Preparation</strong>
-                    <input class="form-control" style="height:150px" name="preparation" value="{{$recipe->preparation}}" placeholder="Preparation">
+                    <strong>Zubereitung</strong>
+                    <input class="form-control" style="height:150px" name="preparation" value="{{$recipe->preparation}}" placeholder="Zubereitung">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Rezept bearbeiten</button>
             </div>
         </div>
 
