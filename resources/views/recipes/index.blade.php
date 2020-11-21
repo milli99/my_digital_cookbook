@@ -8,7 +8,12 @@
             <a type="button"  class="btn btn-outline-primary" href="/home" >Meine Rezepte</a>
         </div>
     </div>
-
+    <!--<div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Suche</span>
+        </div>
+        <input type="text" id="search" name="search" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>-->
 
     @if(count($recipes) > 0)
         @foreach($recipes as $recipe)
@@ -19,7 +24,6 @@
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
-
                           <h5 class="card-title"><a href="/cookbook/{{$recipe->id}}">{{$recipe->name}}</a></h5>
                             <p class="card-text">{{$recipe->description}}</p>
                             <p class="card-text"><small class="text-muted">Erstellt am {{$recipe->created_at}}</small></p>
@@ -42,6 +46,23 @@
         @endforeach
         {{$recipes->links()}}
     @else
-    <p>No Recipes found</p>
+    <p>Du besitzt keine Rezepte</p>
     @endif
+
+    <!--<script type="text/javascript">
+        $('#search').on('keyup',function(){
+            $value=$(this).val();
+            $.ajax({
+                type : 'get',
+                url : '{{URL::to('search')}}',
+                data:{'search':$value},
+                success:function(data){
+                    $('tbody').html(data);
+                }
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    </script>-->
 @endsection
