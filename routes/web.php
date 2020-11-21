@@ -23,5 +23,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //search
-//Route::get('/','App\Http\Controllers\SearchController@index');
 //Route::get('/search','App\Http\Controllers\SearchController@search');
